@@ -1,6 +1,6 @@
 package com.glassbeam.domain
 
-trait Consumer extends ChannelBuffer{
+trait Consumer extends BufferService {
   def emitPairForChannel1(element: DataElement) = {
     getMatchingPair(element) match {
       case (pair, _) if (pair.equals(element)) => None
@@ -10,6 +10,5 @@ trait Consumer extends ChannelBuffer{
         else Some(pair, element)
       }
     }
-
   }
 }

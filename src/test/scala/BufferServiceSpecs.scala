@@ -1,12 +1,12 @@
 import com.glassbeam.TestData
-import com.glassbeam.domain.{ChannelBuffer, DataElement}
+import com.glassbeam.domain.{BufferService, DataElement}
 import org.specs2.mutable.Specification
 
 import scala.collection.immutable.Queue
 
-class ChannelBufferSpecs extends Specification with ChannelBuffer with TestData {
-
-  "ChannelBuffer" >> {
+class BufferServiceSpecs extends Specification with BufferService with TestData {
+sequential
+  "BufferService" >> {
     "#getMatchingPair" should {
       "insert the data element in  queue & return it when matching data element couldn't be found for R1" in {
         getMatchingPair(DataElement("1", "R1")) shouldEqual(DataElement("1", "R1"), Queue(DataElement("2", "R1"), DataElement("1", "R1")))
