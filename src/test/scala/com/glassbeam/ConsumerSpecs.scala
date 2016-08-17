@@ -1,22 +1,9 @@
 package com.glassbeam
 
-import com.glassbeam.domain.{ChannelBuffer, DataElement}
+import com.glassbeam.domain.{Consumer, DataElement}
 import org.specs2.mutable.Specification
 
-class ConsumerSpecs extends Specification with ChannelBuffer with TestData {
-
-  def emitPairForChannel1(element: DataElement) = {
-    getMatchingPair(element) match {
-      case (pair, _) if (pair.equals(element)) => None
-      case (pair, _) => {
-        if (pair.getChannel == 2)
-          Some((element, pair))
-        else Some(pair, element)
-      }
-    }
-
-  }
-
+class ConsumerSpecs extends Specification with Consumer with TestData {
 
   "ChannelConsumer" >> {
     "on receiving the data element for channel" should {
