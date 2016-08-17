@@ -1,46 +1,10 @@
-import com.glassbeam.domain.DataElement
+import com.glassbeam.TestData
+import com.glassbeam.domain.{ChannelBuffer, DataElement}
 import org.specs2.mutable.Specification
 
 import scala.collection.immutable.Queue
 
-class ChannelBufferSpecs extends Specification with TestData {
-
-  def getPair(element: DataElement, inQueue: Queue[DataElement], outQueue: Queue[DataElement]) = outQueue.dequeueOption.getOrElse((element, inQueue enqueue element))
-
-  def getPairFormG1Queue(element: DataElement) = {
-    getPair(element, g2Queue, g1Queue)
-  }
-
-  def getPairFromG2Queue(element: DataElement) = {
-    getPair(element, g1Queue, g2Queue)
-  }
-
-  def getPairFromB2Queue(element: DataElement) = {
-    getPair(element, b1Queue, b2Queue)
-  }
-
-  def getPairFromB1Queue(element: DataElement) = {
-    getPair(element, b2Queue, b1Queue)
-  }
-
-  def getPairFromR2Queue(element: DataElement) = {
-    getPair(element, r1Queue, r2Queue)
-  }
-
-  def getPairFromR1Queue(element: DataElement) = {
-    getPair(element, r2Queue, r1Queue)
-  }
-
-  def getMatchingPair(element: DataElement) = {
-    element.channelNumber match {
-      case "R1" => getPairFromR2Queue(element)
-      case "R2" => getPairFromR1Queue(element)
-      case "G1" => getPairFromG2Queue(element)
-      case "G2" => getPairFormG1Queue(element)
-      case "B1" => getPairFromB2Queue(element)
-      case "B2" => getPairFromB1Queue(element)
-    }
-  }
+class ChannelBufferSpecs extends Specification with ChannelBuffer with TestData {
 
   "ChannelBuffer" >> {
     "#getMatchingPair" should {
