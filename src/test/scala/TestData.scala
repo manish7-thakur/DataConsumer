@@ -1,4 +1,6 @@
 
+import com.glassbeam.domain.DataElement
+
 import scala.collection.immutable.Queue
 
 trait TestData {
