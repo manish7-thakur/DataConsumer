@@ -25,5 +25,22 @@ class ConsumerSpecs extends Specification with TestData {
         consumer.emitPairForChannel1(DataElement("4", "B2")) shouldEqual Some(DataElement("1", "B1"), DataElement("4", "B2"))
       }
     }
+    "on continuously feeding data element" should {
+      "emit pair continuously" in {
+        val dataBuffer = Map("R1" -> Queue[DataElement](),
+          "R2" -> Queue[DataElement](),
+          "G1" -> Queue(),
+          "G2" -> Queue(),
+          "B1" -> Queue(),
+          "B2" -> Queue())
+        val consumer = new Consumer(new InMemoryBufferService(dataBuffer))
+
+        Stream.apply(DataElement("1", "R1"), DataElement("6", "B2"), DataElement("2", "R1"),
+          DataElement("8", "B2"), DataElement("3", "R1"), DataElement("9", "R2"),
+          DataElement("4", "B1"), DataElement("10", "G2"), DataElement("8", "B1"),
+          DataElement("7", "B2"), DataElement("5", "G1"), DataElement("20", "R2")).map(consumer.emitPairForChannel1).toList.flatten shouldEqual List((DataElement("1", "R1"), DataElement("9", "R2")), (DataElement("4", "B1"), DataElement("6", "B2")),
+            (DataElement("8", "B1"),DataElement("8", "B2")), (DataElement("5", "G1"),DataElement("10", "G2")), (DataElement("2", "R1"),DataElement("20", "R2")))
+      }
+    }
   }
 }
