@@ -1,8 +1,10 @@
 package com.glassbeam.domain
 
+import com.sun.corba.se.impl.oa.poa.ActiveObjectMap.Key
+
 import scala.collection.immutable.Queue
 
-trait BufferService extends BufferStore {
+trait BufferService {
 
   def getG2Queue: Queue[DataElement]
 
@@ -16,9 +18,9 @@ trait BufferService extends BufferStore {
 
   def getB2Queue: Queue[DataElement]
 
-  def getPair(element: DataElement, inQueue: Queue[DataElement], outQueue: Queue[DataElement]) = outQueue.dequeueOption.getOrElse((element, inQueue enqueue element))
+  def updateDataStore(key: String, elements: Queue[DataElement])
 
-  def getPairFromG1Queue(element: DataElement) = {
+  private def getPairFromG1Queue(element: DataElement) = {
     val outQueue = getG1Queue
     val inQueue = getG2Queue
     outQueue.dequeueOption.fold {
@@ -29,7 +31,7 @@ trait BufferService extends BufferStore {
       (e, q)
     }
   }
-  def getPairFromB1Queue(element: DataElement) = {
+  private def getPairFromB1Queue(element: DataElement) = {
     val outQueue = getB1Queue
     val inQueue = getB2Queue
     outQueue.dequeueOption.fold {
@@ -41,7 +43,7 @@ trait BufferService extends BufferStore {
     }
   }
 
-  def getPairFromR1Queue(element: DataElement) = {
+  private def getPairFromR1Queue(element: DataElement) = {
     val outQueue = getR1Queue
     val inQueue = getR2Queue
     outQueue.dequeueOption.fold {
@@ -53,7 +55,7 @@ trait BufferService extends BufferStore {
     }
   }
 
-  def getPairFromG2Queue(element: DataElement) = {
+  private def getPairFromG2Queue(element: DataElement) = {
     val outQueue = getG2Queue
     val inQueue = getG1Queue
     outQueue.dequeueOption.fold {
@@ -65,7 +67,7 @@ trait BufferService extends BufferStore {
     }
   }
 
-  def getPairFromB2Queue(element: DataElement) = {
+  private def getPairFromB2Queue(element: DataElement) = {
     val outQueue = getB2Queue
     val inQueue = getB1Queue
     outQueue.dequeueOption.fold {
@@ -78,7 +80,7 @@ trait BufferService extends BufferStore {
   }
 
 
-  def getPairFromR2Queue(element: DataElement) = {
+  private def getPairFromR2Queue(element: DataElement) = {
     val outQueue = getR2Queue
     val inQueue = getR1Queue
     outQueue.dequeueOption.fold {

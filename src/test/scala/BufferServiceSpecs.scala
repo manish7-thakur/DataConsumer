@@ -6,6 +6,7 @@ import scala.collection.immutable.Queue
 
 class BufferServiceSpecs extends Specification with BufferService with TestData {
 sequential
+
   "BufferService" >> {
     "#getMatchingPair" should {
       "insert the data element in  queue & return it when matching data element couldn't be found for R1" in {
@@ -28,5 +29,5 @@ sequential
       }
     }
   }
-
+  override def updateDataStore(key: String, elements: Queue[DataElement]) = {}
 }

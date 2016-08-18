@@ -1,8 +1,8 @@
 package com.glassbeam.domain
 
-trait Consumer extends BufferService {
+class Consumer(bufferService: BufferService) {
   def emitPairForChannel1(element: DataElement) = {
-    getMatchingPair(element) match {
+    bufferService.getMatchingPair(element) match {
       case (pair, _) if (pair.equals(element)) => None
       case (pair, _) => {
         if (pair.getChannel == 2)
