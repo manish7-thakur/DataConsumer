@@ -29,6 +29,29 @@ trait BufferService extends BufferStore {
       (e, q)
     }
   }
+  def getPairFromB1Queue(element: DataElement) = {
+    val outQueue = getB1Queue
+    val inQueue = getB2Queue
+    outQueue.dequeueOption.fold {
+      updateDataStore("B2", inQueue enqueue element)
+      (element, inQueue enqueue element)
+    } { case (e, q) =>
+        updateDataStore("B1", q)
+      (e, q)
+    }
+  }
+
+  def getPairFromR1Queue(element: DataElement) = {
+    val outQueue = getR1Queue
+    val inQueue = getR2Queue
+    outQueue.dequeueOption.fold {
+      updateDataStore("R2", inQueue enqueue element)
+      (element, inQueue enqueue element)
+    } { case (e, q) =>
+      updateDataStore("R1", q)
+      (e, q)
+    }
+  }
 
   def getPairFromG2Queue(element: DataElement) = {
     val outQueue = getG2Queue
@@ -43,19 +66,28 @@ trait BufferService extends BufferStore {
   }
 
   def getPairFromB2Queue(element: DataElement) = {
-    getPair(element, getB1Queue, getB2Queue)
+    val outQueue = getB2Queue
+    val inQueue = getB1Queue
+    outQueue.dequeueOption.fold {
+      updateDataStore("B1", inQueue enqueue element)
+      (element, inQueue enqueue element)
+    } { case (e, q) =>
+      updateDataStore("B2", q)
+      (e, q)
+    }
   }
 
-  def getPairFromB1Queue(element: DataElement) = {
-    getPair(element, getB2Queue, getB1Queue)
-  }
 
   def getPairFromR2Queue(element: DataElement) = {
-    getPair(element, getR1Queue, getR2Queue)
-  }
-
-  def getPairFromR1Queue(element: DataElement) = {
-    getPair(element, getR2Queue, getR1Queue)
+    val outQueue = getR2Queue
+    val inQueue = getR1Queue
+    outQueue.dequeueOption.fold {
+      updateDataStore("R1", inQueue enqueue element)
+      (element, inQueue enqueue element)
+    } { case (e, q) =>
+      updateDataStore("R2", q)
+      (e, q)
+    }
   }
 
   def getMatchingPair(element: DataElement) = {
