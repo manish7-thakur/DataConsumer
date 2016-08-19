@@ -16,10 +16,10 @@ These three types of Data are arriving in a random sequence on the two channels.
  
 The program creates pairs of "same types" arriving on two channels in their "order of arrival". 
  
-### Example:
-# If a sample sequence is as follows: 
-  Channel 1: R1_1 R1_2 R1_3 B1_4 B1_8 G1_5 
-  Channel 2: B2_6 B2_8 R2_9 G2_10 B2_7 R2_20 
+# Example:
+## If a sample sequence is as follows: 
+### Channel 1: R1_1 R1_2 R1_3 B1_4 B1_8 G1_5 
+### Channel 2: B2_6 B2_8 R2_9 G2_10 B2_7 R2_20 
  
-# Output is: 
-    (R1_1, R2_9) (B1_4, B2_6) (B1_8, B2_8) (G1_5, G2_10) (R1_2, R2_20) 
+## Output is: 
+### (R1_1, R2_9) (B1_4, B2_6) (B1_8, B2_8) (G1_5, G2_10) (R1_2, R2_20) 
