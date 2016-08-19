@@ -26,10 +26,10 @@ trait BufferService {
     val inQueue = getG2Queue
     outQueue.dequeueOption.fold {
       updateDataStore("G2", inQueue enqueue element)
-      (element, inQueue enqueue element)
+      element
     } { case (e, q) =>
       updateDataStore("G1", q)
-      (e, q)
+      e
     }
   }
   private def getPairFromB1Queue(element: DataElement) = {
@@ -37,10 +37,10 @@ trait BufferService {
     val inQueue = getB2Queue
     outQueue.dequeueOption.fold {
       updateDataStore("B2", inQueue enqueue element)
-      (element, inQueue enqueue element)
+      element
     } { case (e, q) =>
         updateDataStore("B1", q)
-      (e, q)
+      e
     }
   }
 
@@ -49,10 +49,10 @@ trait BufferService {
     val inQueue = getR2Queue
     outQueue.dequeueOption.fold {
       updateDataStore("R2", inQueue enqueue element)
-      (element, inQueue enqueue element)
+      element
     } { case (e, q) =>
       updateDataStore("R1", q)
-      (e, q)
+      e
     }
   }
 
@@ -61,10 +61,10 @@ trait BufferService {
     val inQueue = getG1Queue
     outQueue.dequeueOption.fold {
       updateDataStore("G1", inQueue enqueue element)
-      (element, inQueue enqueue element)
+      element
     } { case (e, q) =>
       updateDataStore("G2", q)
-      (e, q)
+      e
     }
   }
 
@@ -73,10 +73,10 @@ trait BufferService {
     val inQueue = getB1Queue
     outQueue.dequeueOption.fold {
       updateDataStore("B1", inQueue enqueue element)
-      (element, inQueue enqueue element)
+      element
     } { case (e, q) =>
       updateDataStore("B2", q)
-      (e, q)
+      e
     }
   }
 
@@ -86,10 +86,10 @@ trait BufferService {
     val inQueue = getR1Queue
     outQueue.dequeueOption.fold {
       updateDataStore("R1", inQueue enqueue element)
-      (element, inQueue enqueue element)
+      element
     } { case (e, q) =>
       updateDataStore("R2", q)
-      (e, q)
+      e
     }
   }
 

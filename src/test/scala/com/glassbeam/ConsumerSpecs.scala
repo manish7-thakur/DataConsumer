@@ -17,13 +17,13 @@ class ConsumerSpecs extends Specification with TestData {
   "ChannelConsumer" >> {
     "on receiving the data element for channel" should {
       "not emit anything when corresponding match could not be found" in {
-        consumer.emitPairForChannel1(DataElement("3", "R1")) shouldEqual None
+        consumer.emitPairFor(DataElement("3", "R1")) shouldEqual None
       }
       "return the corresponding pair from the other channel" in {
-        consumer.emitPairForChannel1(DataElement("3", "G1")) shouldEqual Some((DataElement("3", "G1"), DataElement("4", "G2")))
+        consumer.emitPairFor(DataElement("3", "G1")) shouldEqual Some((DataElement("3", "G1"), DataElement("4", "G2")))
       }
       "maintain the order for the channel" in {
-        consumer.emitPairForChannel1(DataElement("4", "B2")) shouldEqual Some(DataElement("1", "B1"), DataElement("4", "B2"))
+        consumer.emitPairFor(DataElement("4", "B2")) shouldEqual Some(DataElement("1", "B1"), DataElement("4", "B2"))
       }
     }
     "on continuously feeding data element" should {
@@ -39,7 +39,7 @@ class ConsumerSpecs extends Specification with TestData {
         Stream.apply(DataElement("1", "R1"), DataElement("6", "B2"), DataElement("2", "R1"),
           DataElement("8", "B2"), DataElement("3", "R1"), DataElement("9", "R2"),
           DataElement("4", "B1"), DataElement("10", "G2"), DataElement("8", "B1"),
-          DataElement("7", "B2"), DataElement("5", "G1"), DataElement("20", "R2")).map(consumer.emitPairForChannel1).toList.flatten shouldEqual List((DataElement("1", "R1"), DataElement("9", "R2")), (DataElement("4", "B1"), DataElement("6", "B2")),
+          DataElement("7", "B2"), DataElement("5", "G1"), DataElement("20", "R2")).map(consumer.emitPairFor).toList.flatten shouldEqual List((DataElement("1", "R1"), DataElement("9", "R2")), (DataElement("4", "B1"), DataElement("6", "B2")),
             (DataElement("8", "B1"),DataElement("8", "B2")), (DataElement("5", "G1"),DataElement("10", "G2")), (DataElement("2", "R1"),DataElement("20", "R2")))
       }
     }
