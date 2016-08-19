@@ -1,5 +1,8 @@
+package com.glassbeam.repository
+
 import com.glassbeam.TestData
-import com.glassbeam.domain.{BufferService, DataElement}
+import com.glassbeam.domain.DataElement
+import com.glassbeam.reposiotry.BufferService
 import org.specs2.mutable.Specification
 
 import scala.collection.immutable.Queue

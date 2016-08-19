@@ -1,4 +1,7 @@
-package com.glassbeam.domain
+package com.glassbeam
+
+import com.glassbeam.domain.DataElement
+import com.glassbeam.reposiotry.BufferService
 
 class Consumer(bufferService: BufferService) {
   def emitPairForChannel1(element: DataElement) = {

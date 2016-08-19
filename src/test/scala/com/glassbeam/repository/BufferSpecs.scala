@@ -1,11 +1,11 @@
-package com.glassbeam
+package com.glassbeam.repository
 
-import com.glassbeam.domain.{DataElement, InMemoryBufferService}
+import com.glassbeam.TestData
+import com.glassbeam.domain.DataElement
+import com.glassbeam.reposiotry.InMemoryBufferService
 import org.specs2.matcher.Scope
 import org.specs2.mutable.Specification
-
 import scala.collection.immutable.Queue
-
 
 class BufferSpecs extends Specification with TestData {
   sequential

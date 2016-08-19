@@ -1,6 +1,7 @@
 package com.glassbeam
 
-import com.glassbeam.domain.{Consumer, DataElement, InMemoryBufferService}
+import com.glassbeam.domain.DataElement
+import com.glassbeam.reposiotry.InMemoryBufferService
 import org.specs2.mutable.Specification
 
 import scala.collection.immutable.Queue
