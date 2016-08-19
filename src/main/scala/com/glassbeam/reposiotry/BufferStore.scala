@@ -1,6 +1,7 @@
 package com.glassbeam.reposiotry
 
 import com.glassbeam.domain.DataElement
+
 import scala.collection.immutable.Queue
 
 object BufferStore {

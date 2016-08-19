@@ -32,6 +32,7 @@ trait BufferService {
       e
     }
   }
+
   private def getPairFromB1Queue(element: DataElement) = {
     val outQueue = getB1Queue
     val inQueue = getB2Queue
@@ -39,7 +40,7 @@ trait BufferService {
       updateDataStore("B2", inQueue enqueue element)
       element
     } { case (e, q) =>
-        updateDataStore("B1", q)
+      updateDataStore("B1", q)
       e
     }
   }

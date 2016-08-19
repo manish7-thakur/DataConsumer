@@ -8,7 +8,7 @@ class Consumer(bufferService: BufferService) {
     val pair = bufferService.getMatchingPair(element)
     pair == element match {
       case true => None
-      case false => if(pair.getChannel == 2) Some((element, pair)) else Some(pair, element)
+      case false => if (pair.getChannel == 2) Some((element, pair)) else Some(pair, element)
     }
   }
 }

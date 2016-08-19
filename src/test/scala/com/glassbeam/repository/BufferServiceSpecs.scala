@@ -8,7 +8,7 @@ import org.specs2.mutable.Specification
 import scala.collection.immutable.Queue
 
 class BufferServiceSpecs extends Specification with BufferService with TestData {
-sequential
+  sequential
 
   "BufferService" >> {
     "#getMatchingPair" should {
@@ -32,5 +32,6 @@ sequential
       }
     }
   }
+
   override def updateDataStore(key: String, elements: Queue[DataElement]) = {}
 }

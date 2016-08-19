@@ -40,7 +40,7 @@ class ConsumerSpecs extends Specification with TestData {
           DataElement("8", "B2"), DataElement("3", "R1"), DataElement("9", "R2"),
           DataElement("4", "B1"), DataElement("10", "G2"), DataElement("8", "B1"),
           DataElement("7", "B2"), DataElement("5", "G1"), DataElement("20", "R2")).map(consumer.emitPairFor).toList.flatten shouldEqual List((DataElement("1", "R1"), DataElement("9", "R2")), (DataElement("4", "B1"), DataElement("6", "B2")),
-            (DataElement("8", "B1"),DataElement("8", "B2")), (DataElement("5", "G1"),DataElement("10", "G2")), (DataElement("2", "R1"),DataElement("20", "R2")))
+          (DataElement("8", "B1"), DataElement("8", "B2")), (DataElement("5", "G1"), DataElement("10", "G2")), (DataElement("2", "R1"), DataElement("20", "R2")))
       }
     }
   }

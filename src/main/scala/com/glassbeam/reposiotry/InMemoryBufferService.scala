@@ -1,6 +1,7 @@
 package com.glassbeam.reposiotry
 
 import com.glassbeam.domain.DataElement
+
 import scala.collection.immutable.Queue
 
 class InMemoryBufferService(var dataBuffer: Map[String, Queue[DataElement]]) extends BufferService {
